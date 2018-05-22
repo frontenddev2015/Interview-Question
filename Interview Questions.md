@@ -134,6 +134,7 @@ This compiles to:
 
 ### Fibonaci Series
 
+```
 var i;
 var fib = []; // Initialize array!
 
