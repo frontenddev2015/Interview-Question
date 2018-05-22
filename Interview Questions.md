@@ -151,6 +151,7 @@ console.log(fib[i]);
 
 ### Palindrom
 
+```
 var str = 'madam', palindrom='';
 
 for(var i=str.length-1; i>=0; i--) {
@@ -252,7 +253,7 @@ function CalculateWeek()
         }
         
         CalculateWeek()
-        ```
+```
 
 ### Attribute Selectors
 
@@ -512,8 +513,10 @@ function gettersetter(){
 ```
 
 ### Spread Operator
-```
+
 spread operators spreads array into its elements but the rest operator collects multiple elements and condences to a single array.
+
+```
 var arr = [1,2,3]
 var arr1 = [6,7,8, ...arr]
 
@@ -523,6 +526,7 @@ concat array: var arr3 = [...arr, ...arr1]
 
 ### Iterators
 
+```
 var arr = [12,3,344,5]
 console.dir(arr) - in the proto we will find Symbol.iterator
 
@@ -641,7 +645,6 @@ arrSort(arr)
 ```
 var arr = [2,7,3,1,8,4];
 
-
 var first=0, second=0, third=0;
 
 for(var i=0; i<arr.length; i++) {
@@ -685,6 +688,7 @@ Many object-oriented languages provide the ability to declare methods as either 
 
 does allow to emulate this functionality through the use of closures, which is known as the module pattern.
 
+```
 var dwightSalary = (function() {
     var salary = 60000;
     function changeBy(amount) {
@@ -711,12 +715,10 @@ dwightSalary.lower();
 alert(dwightSalary.currentAmount()); // $55,000
 
 dwightSalary.changeBy(10000) // TypeError: undefined is not a function
-
-***************************************
-
+```
 https://egghead.io/courses/the-beginner-s-guide-to-react
 
-###splice vs slice
+### splice vs slice
 
 
 splice ---> startIndex, endIndex, item, item2
@@ -729,24 +731,24 @@ slice --> startIndex, endIndex
 
 --->returns the selected items.
 
-###Map,Reduce, Filter
+### Map,Reduce, Filter
 
 
-####map :- 
+#### map :- 
 If i already have an array and i want to do the exact same operation on each of the elements in the array and return the same amount of items in the array, use the map.
 array.map(currentItem, Index, wholeArray)
 
-####reduce :- 
+#### reduce :- 
 If i already have an array, but i want to use the values in that array to create something completely new, use the reduce.
 
-####filter:-
+#### filter:-
 array.map(currentItem, Index, wholeArray)
 
-###DataType:
+### DataType:
 
 Number, String, Null, undefiend, Object, symbol, boolean.
 
-###Factorial
+### Factorial
 
 ```
 function fact(num) {
@@ -759,7 +761,7 @@ var total = fact(5)
 console.log(total)
 ```
 
-###Javascript Call,apply method
+### Javascript Call,apply method
 
 ```
 var obj = {
@@ -782,7 +784,8 @@ var value = obj.getFullName.apply(obj1, ['hello', 'how']);
 console.log(value)
 ```
 
-##Bind method javascript
+### Bind method javascript
+
 ```
 function getFullName(firstName, lastName){
   return firstName+' '+lastName+' '+this.age;
