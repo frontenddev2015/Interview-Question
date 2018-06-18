@@ -338,16 +338,17 @@ The [attribute*="value"] selector is used to select elements whose attribute val
 
 onreadystatechange	Defines a function to be called when the readyState property changes
 readyState	Holds the status of the XMLHttpRequest. 
-0: request not initialized 
-1: server connection established
-2: request received 
-3: processing request 
-4: request finished and response is ready
-status	200: "OK"
-403: "Forbidden"
-404: "Page not found"
-For a complete list go to the Http Messages Reference
-statusText	Returns the status-text (e.g. "OK" or "Not Found")
+
+* 0: request not initialized 
+* 1: server connection established
+* 2: request received 
+* 3: processing request 
+* 4: request finished and response is ready
+* status	200: "OK"
+* 403: "Forbidden"
+* 404: "Page not found"
+* For a complete list go to the Http Messages Reference
+* statusText	Returns the status-text (e.g. "OK" or "Not Found")
 
 ### Singleton Class
 
@@ -821,6 +822,7 @@ performOperation(2, 3, function(result) {
 
 ### Find duplicate in a string
 
+```
 const str = "afewreociwddwjej";
 function findRepeat(str) {
   const arr = str.split('');
@@ -830,6 +832,7 @@ function findRepeat(str) {
   for (let i = 0; i < arr.length; i++) {
     if (hash.get(arr[i]) === undefined) {
       hash.set(arr[i], true);
+      console.log(hash);
     } else {
       const value = hash.get(arr[i]);
       if (value) {
@@ -838,12 +841,93 @@ function findRepeat(str) {
     }
   }
   hash.forEach((v, k) => {
+      console.log(v+'---'+k)
     if (!v)
       result.push(k);
   });
   return result;
 }
 console.log(...findRepeat(str));
+```
+
+### Find the closest pair from an array for a given number.
+
+```
+function findclosest(arr, num) {
+  var diff = 1000;
+  var l=0;
+  var r = arr.length-1;
+  var l_val=arr[l];
+  var r_val = arr[r];
+  
+  while(l<r) {
+    if(arr[l]+arr[r]-num < diff) {
+      diff = Math.abs(arr[l]+arr[r]-num);
+      l_val = arr[l];
+      r_val = arr[r];
+    }
+    if(arr[l]+arr[r] < num) {
+      ++l;
+    } else {
+     --r; 
+    }
+  }
+  console.log(l_val+'  '+r_val);
+}
+```
+
+### Sort even-placed elements in increasing and odd-placed in decreasing order
+
+```
+function sortevenoddnumbersarray(arr) {
+  var even_arr=[];
+  var odd_arr = [];
+  
+  for (let i=0; i<arr.length;i++) {
+    if(arr[i]%2 === 0) {
+      even_arr.push(arr[i])
+    } else {
+      odd_arr.push(arr[i]);
+    }
+  }
+  var even_result_array = even_arr.sort(function(a,b) {return a-b;});
+  var odd_result_array = odd_arr.sort(function(a,b) {return b-a;});
+  
+  console.log("Even Array "+even_result_array);
+  console.log("Odd Array "+odd_result_array);
+  
+  var i=0;
+  for(var j=0; j<even_result_array.length; j++)
+    arr[i++]=even_result_array[j];
+  for(var j=0; j<odd_result_array.length; j++)
+    arr[i++]=odd_result_array[j];
+  
+  console.log(arr)
+}
+
+sortevenoddnumbersarray([1,2,3,4,5,6,7])
+```
+
+### Frequence of words in a given string
+
+```
+function wordfrequence(str) {
+  var input = str.split(" ");
+  var hash = new Map();
+  for(let i=0; i<input.length;i++) {
+    if(hash.get(input[i]) === undefined) {
+      hash.set(input[i], 1);
+    } else {
+      hash.set(input[i], hash.get(input[i])+1);
+    }
+  }
+  hash.forEach(function(key, value){
+    console.log(`${value} is in ${key} times`);
+  });
+}
+
+wordfrequence("hello how are you hello hello you")
+```
 
 
 
