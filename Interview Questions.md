@@ -929,6 +929,151 @@ function wordfrequence(str) {
 wordfrequence("hello how are you hello hello you")
 ```
 
+### Capitalize the first character of each word in a string.
+
+```
+function string(str){
+  var chars = str.split(" ");
+  //console.log(chars)
+  for (let i=0; i<chars.length;i++) {
+    
+    chars[i]=chars[i].charAt(0).toUpperCase()+chars[i].slice(1)
+   
+  }
+   console.log(chars.join(" "))
+  
+}
+
+string("hrusikesh behera bunu haripur")
+```
+
+### Swap upper case to lower case and lower case to upper case in a string
+
+```
+var swapCase = function(letters){
+    var newLetters = "";
+    for(var i = 0; i<letters.length; i++){
+        if(letters[i] === letters[i].toLowerCase()){
+            newLetters += letters[i].toUpperCase();
+        }else {
+            newLetters += letters[i].toLowerCase();
+        }
+    }
+    console.log(newLetters);
+    return newLetters;
+}
+
+var text = 'So, today we have REALLY good day';
+
+var swappedText = swapCase(text);
+```
+
+### Insert a string at certain position
+
+```
+return main_string.slice(0, pos) + ins_string + main_string.slice(pos);
+```
+
+### Find largest substring from a string without repeating characters
+
+```
+function largestsubstring(str){
+  var chars = str.split('');
+  var count;
+  var nonrepeatstring="";
+  var hash = new Map();
+  for(let i=0; i<chars.length; i++) {
+    if(hash.get(chars[i]) === undefined) {
+      hash.set(chars[i], true)
+    } else if (hash.has(chars[i])) {
+      count = i+1;
+      break;
+    }
+  }
+  nonrepeatstring = str.substring(count);
+  console.log(nonrepeatstring)
+}
+
+largestsubstring("google.com");
+```
+
+### Largest Palindrom in a string
+
+```
+
+function is_Palindrome(str1) {
+  var rev = str1.split("").reverse().join("");
+  return str1 == rev;
+}
+
+function longest_palindrome(str1){
+  var max_length = 0,
+  maxp = '';
+
+  for(var i=0; i < str1.length; i++) 
+  {
+    var subs = str1.substr(i, str1.length);
+    
+
+    for(var j=subs.length; j>=0; j--) 
+    {
+      var sub_subs_str = subs.substr(0, j);
+        //console.log(sub_subs_str);
+      if (sub_subs_str.length <= 1)
+      continue;
+
+      if (is_Palindrome(sub_subs_str))
+      {
+        console.log(sub_subs_str+' '+max_length) 
+        if (sub_subs_str.length > max_length) 
+        {
+          //console.log(sub_subs_str);
+        max_length = sub_subs_str.length;
+        maxp = sub_subs_str;
+        }
+      }
+    }
+  }
+  return maxp;
+}
+console.log(longest_palindrome("araca"));
+
+//console.log(longest_palindrome("HYTBCABADEFGHABCDEDCBAGHTFYW12345678987654321ZWETYGDE"));
+```
+
+### Quick Sorting
+
+```
+function quick_Sort(origArray) {
+	if (origArray.length <= 1) { 
+		return origArray;
+	} else {
+
+		var left = [];
+		var right = [];
+		var newArray = [];
+		var pivot = origArray.pop();
+		var length = origArray.length;
+
+		for (var i = 0; i < length; i++) {
+			if (origArray[i] <= pivot) {
+				left.push(origArray[i]);
+			} else {
+				right.push(origArray[i]);
+			}
+		}
+
+		return newArray.concat(quick_Sort(left), pivot, quick_Sort(right));
+	}
+}
+
+var myArray = [3, 0, 2, 5, -1, 4, 1 ];
+console.log("Original array: " + myArray);
+var sortedArray = quick_Sort(myArray);
+console.log("Sorted array: " + sortedArray);
+```
+
+
 
 
 
