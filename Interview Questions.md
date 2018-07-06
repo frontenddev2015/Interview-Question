@@ -353,45 +353,43 @@ readyState	Holds the status of the XMLHttpRequest.
 ### Singleton Class
 
 ```
-var singleTon = (function() {
+var singleTon =  (function(){
   var instance;
-
   function init() {
-     function privateMethod() {
-       console.log('I am private');
-     }
-
-     var privateData = 'private value';
-
-     return {
-       publicData : 'public data',
-       getDetails: function() {
-         console.log('I am public..')
-       },
-
-       getRandomNumber: function() {
-         console.log(privateData +' '+ this.publicData);
-       }
-     };
-  };
-  return {
-    getInstance: function() {
-      if (!instance) {
-        instance = init();
+    var position = "position value";
+    var configDetails = {height: "20px", width: "25px"}
+    
+    function createTooltip() {
+      console.log(configDetails.height+"  "+configDetails.width);
+    }
+    
+    return {
+      addToolTip: function() {
+        console.log("Add Tooltip...")
+        createTooltip();
+      },
+      removeToolTip: function() {
+        console.log("remove tooltip..")
       }
-
+    }
+  }
+  return {
+    getInstance:function(){
+      if(!instance){
+        instance= init();
+        
+      }
       return instance;
     }
   }
 })();
 
-
-var singleA = singleTon.getInstance();
-var singleB = singleTon.getInstance();
-singleA.getDetails();
-singleB.getDetails();
-console.log(singleA.publicData);
-singleB.getRandomNumber();
+var obj = singleTon.getInstance();
+obj.addToolTip();
+obj.removeToolTip();
+var obj1 = singleTon.getInstance();
+obj1.addToolTip();
+console.log(obj.addToolTip() === obj1.addToolTip())
 ```
 
 
@@ -1073,15 +1071,85 @@ var sortedArray = quick_Sort(myArray);
 console.log("Sorted array: " + sortedArray);
 ```
 
+### Find matching string from a distionary
+
+Consider the following dictionary 
+{ i, like, sam, sung, samsung, mobile, ice, 
+  cream, icecream, man, go, mango}
+
+Input:  ilike
+Output: Yes 
+The string can be segmented as "i like".
+
+Input:  ilikesamsung
+Output: Yes
+The string can be segmented as "i like samsung" 
+or "i like sam sung".
+
+```
+  var val = "i like sum sung"
+  var splitstr = val.split(' ');
+  function dictionarycontainswords(word) {
+    var length = splitstr.length;
+    for(let i=0; i<length; i++) {
+      if (splitstr[i] === word) {
+        console.log('1')
+        return true;
+      }
+    }
+    return false;
+  }
+  
+  function wordbreak(str) {
+    var length=str.length;
+    
+    if (length === 0)
+      return true;
+    for (let i=1; i<=length; i++) {
+      if (dictionarycontainswords(str.substring(0,i)) && wordbreak(str.substr(i, length-i)))
+        return true;
+    }
+    return false;
+  }
+  
+
+console.log(wordbreak('ilikesumsung'));
+```
+
+### Find largest word in dictionary by deleting some characters of given string
+
+Input : dict = {"ale", "apple", "monkey", "plea"}   
+        str = "abpcplea"  
+Output : apple 
+
+```
+function issubsquent(word, str) {
+  var m = word.length, n = str.length;
+  var j =0;
+  for(let i=0; i<n && j<m; i++) {
+    if (word[j] === str[i])
+      j++;
+  }
+  //length of result string === lenth of inputted string str in issubsquent
+  return j===m;
+}
 
 
 
+function largetsubstring(dict, str) {
+  var splitvalue = dict.split(' ');
+  var length = 0;
+  for(let i=0; i<splitvalue.length; i++) {
+    if(length<splitvalue[i].length && issubsquent(splitvalue[i], str)){
+      result = splitvalue[i];
+      length = splitvalue[i].length;
+    }
+  }
+  return result;
+}
 
+var dict = "al apple monkey"
+var str = "abpcplea"
 
-
-
-
-
-
-
-
+console.log(largetsubstring(dict, str))
+```
